@@ -1,0 +1,43 @@
+<form class="form-inline">
+  <span class="nav-tool-items">
+
+    <!--  Login button  -->
+    <button type="button" mat-icon-button routerLink="/login" routerLinkActive="active" matTooltip="Login"
+            class="text-white">
+      <i class="fas fa-sign-in-alt mb-1"></i>
+    </button>
+
+    <!--  Register button  -->
+    <button type="button" mat-icon-button routerLink="/register" routerLinkActive="active" matTooltip="Register"
+            class="text-white">
+      <i class="fas fa-user-plus mb-1"></i>
+    </button>
+  </span>
+
+  <span class="nav-tool-items">
+    <!--   User button   -->
+    <button mat-icon-button matTooltip="User" class="text-white">
+      <img class="md-avatar size-1 rounded-circle">
+    </button>
+
+    <mat-menu #appMenu="matMenu">
+      <!--   User profile button     -->
+      <button mat-menu-item routerLink="/user-profile">
+        <i class="fas fa-user"></i>
+        Profile
+      </button>
+
+      <!--   User panel button     -->
+      <button mat-menu-item routerLink="/user-panel">
+        <i class="fas fa-user-shield"></i>
+        Panel
+      </button>
+
+      <!-- Logout button -->
+      <button mat-menu-item routerLink="/logout" routerLinkActive="active">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+      </button>
+    </mat-menu>
+  </span>
+</form>

@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegisterComponent } from './components/register/register.component';
 import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
 import { MainNavbarContentComponent } from './components/main-navbar-content/main-navbar-content.component';
+import { HomepageComponent } from './components/homepage/homepage.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { MainNavbarContentComponent } from './components/main-navbar-content/mai
     RegisterComponent,
     MainNavbarComponent,
     MainNavbarContentComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,

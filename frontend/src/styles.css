@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@fortawesome/fontawesome-free/css/all.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.login-bg {
+  height: 100%;
+  background-image: url("assets/images/login-background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.register-bg {
+  height: 100%;
+  background-image: url("assets/images/register-background.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.small-margin-top {
+  margin-top: 5%;
+}
+
+.normal-margin-top {
+  margin-top: 10%;
+}
+
+.medium-margin-top {
+  margin-top: 15%;
+}
+
+.big-margin-top {
+  margin-top: 22%;
+}
+
+.transparent-bg {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-style: ridge;
+  border-width: 3px;
+  border-color: white;
+  color: white;
+  border-radius: 10px!important;
+}

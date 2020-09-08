@@ -23,7 +23,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Here you may define all of the broadcast connections that will be used
-    | to broadcast events to other systems or over websockets. Samples of
+    | to broadcast user-events to other systems or over websockets. Samples of
     | each available type of connection are provided inside this array.
     |
     */
@@ -36,8 +36,7 @@ return [
             'secret' => env('PUSHER_APP_SECRET'),
             'app_id' => env('PUSHER_APP_ID'),
             'options' => [
-                'cluster' => env('PUSHER_APP_CLUSTER'),
-                'useTLS' => true,
+                //
             ],
         ],
 

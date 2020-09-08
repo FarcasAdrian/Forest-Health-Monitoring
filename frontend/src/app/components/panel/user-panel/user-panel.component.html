@@ -1,0 +1,37 @@
+<app-side-bar></app-side-bar>
+
+<div [ngSwitch]="userPanelService.selectedTab" class="d-flex justify-content-center">
+  <div *ngSwitchCase="'Dashboard'">
+    <app-dashboard></app-dashboard>
+  </div>
+  <div *ngSwitchCase="'Forest'">
+    <app-forest></app-forest>
+  </div>
+  <div *ngSwitchCase="'Validate'">
+    <app-validate-events></app-validate-events>
+  </div>
+  <div *ngSwitchCase="'New Event'">
+    <app-new-event></app-new-event>
+  </div>
+  <div *ngSwitchCase="'Statistics'">
+    <app-statistics></app-statistics>
+  </div>
+  <div *ngSwitchCase="'Users'">
+    <app-users></app-users>
+  </div>
+  <div *ngSwitchCase="'Forests'">
+    <app-forests></app-forests>
+  </div>
+  <div *ngSwitchCase="'Events'">
+    <app-events></app-events>
+  </div>
+  <div *ngSwitchCase="'History'">
+    <app-issues-history></app-issues-history>
+  </div>
+  <div *ngSwitchCase="'Requests'">
+    <app-forester-request></app-forester-request>
+  </div>
+  <div *ngSwitchDefault>
+    <app-dashboard></app-dashboard>
+  </div>
+</div>

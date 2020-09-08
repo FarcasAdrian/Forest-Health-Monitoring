@@ -1,0 +1,21 @@
+<app-page-subtitle [subtitle]="'Forest location'"></app-page-subtitle>
+
+<div class="mat-elevation-z8 mt-5">
+  <table mat-table class="full-width-table" matSort aria-label="Elements" [dataSource]="localData.location.coordinates[0]">
+
+    <!-- Latitude Column -->
+    <ng-container matColumnDef="latitude">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Latitude</th>
+      <td mat-cell *matCellDef="let row">{{row[0]}}</td>
+    </ng-container>
+
+    <!-- Longitude Column -->
+    <ng-container matColumnDef="longitude">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Longitude</th>
+      <td mat-cell *matCellDef="let row">{{row[1]}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['latitude', 'longitude']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['latitude', 'longitude'];"></tr>
+  </table>
+</div>

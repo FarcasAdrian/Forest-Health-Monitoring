@@ -1,0 +1,85 @@
+<app-main-nav></app-main-nav>
+
+<div class="container-fluid mt-4">
+  <div class="d-flex justify-content-center">
+    <app-alert></app-alert>
+  </div>  
+
+  <div class="row">
+    <div class="col-md-3 text-center">
+      <mat-card class="card">
+
+        <img [src]="this.userProfileService.userProfileData.profileImagePath" class="profile-picture rounded-circle"
+          (click)="imageInput.click()" style="cursor: pointer" alt="Image not found." />
+        <input #imageInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none">
+        <button mat-stroked-button type="button" class="mt-2" (click)="onUpload()">Upload</button>
+
+        <div class="card-body">
+          <mat-card-title>{{ this.userProfileService.userProfileData.name }}</mat-card-title>
+          <mat-card-subtitle>{{ this.userProfileService.userProfileData.userType }}</mat-card-subtitle>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="col-md-9">
+      <mat-card class="card">
+        <mat-card-content>
+          <mat-tab-group>
+            <mat-tab label="General">
+              <mat-action-list>
+
+                <mat-list-item class="mt-2 row" (click)="dialogsService.changeNameDialog()">
+                  <div class="text-monospace text-muted col-md-2">Name</div>
+                  <div class="mat-list-center-text">{{ userProfileService.userProfileData.name }}</div>
+                  <div><i class="fas fa-chevron-right text-right"></i></div>
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="mt-2 row" (click)="dialogsService.changeEmailDialog()">
+                  <div class="text-monospace text-muted col-md-2">Email</div>
+                  <div class="mat-list-center-text">{{ userProfileService.userProfileData.email }}</div>
+                  <div><i class="fas fa-chevron-right text-right"></i></div>
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+
+                <mat-list-item class="mt-2 row"
+                  *ngIf="requestAccessSent && userProfileService.userProfileData.userType !== 'forester'">
+                  <div class="text-monospace text-muted col-md-2">Assigment Forest</div>
+                  <div class="mat-list-center-text">
+                    You already sent a request. You must to wait for a response.
+                  </div>
+                </mat-list-item>
+
+                <mat-list-item class="mt-2 row" (click)="changeForestAssigmentDialog()"
+                  *ngIf="!requestAccessSent && userProfileService.userProfileData.userType !== 'forester'">
+                  <div class="text-monospace text-muted col-md-2">Assigment Forest</div>
+                  <div class="mat-list-center-text">
+                    You don't have a assigmented forest. Click here for more details.
+                  </div>
+                  <div><i class="fas fa-chevron-right text-right"></i></div>
+                </mat-list-item>
+
+                <mat-list-item class="mt-2 row"
+                  *ngIf="userProfileService.userProfileData.userType === 'forester'">
+                  <div class="text-monospace text-muted col-md-2">Assigment Forest</div>
+                  <div class="mat-list-center-text">
+                    {{ userProfileService.userProfileData.assigmentForest }}
+                  </div>
+                  <div><i class="fas fa-chevron-right text-right"></i></div>
+                </mat-list-item>
+
+              </mat-action-list>
+            </mat-tab>
+
+            <mat-tab label="Change Password">
+              <app-change-password></app-change-password>
+            </mat-tab>
+
+          </mat-tab-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div *ngIf="localData.length">
+  <app-page-subtitle [subtitle]="'Tree types list'"></app-page-subtitle>
+
+  <mat-list *ngFor="let data of localData">
+    <mat-list-item>{{data}}</mat-list-item>
+    <mat-divider></mat-divider>
+  </mat-list>
+</div>
+
+<div *ngIf="!localData.length">
+  <p class="text-center">No data found.</p>
+</div>

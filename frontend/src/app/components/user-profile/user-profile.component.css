@@ -1,0 +1,14 @@
+.profile-picture {
+  vertical-align: middle;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.mat-list-center-text {
+  width: 100%;
+  text-align: center;
+}

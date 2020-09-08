@@ -1,0 +1,42 @@
+<div *ngIf="localData.action === 'delete'">
+  <h1 mat-dialog-title class="text-center">Are you sure?</h1>
+</div>
+
+<div *ngIf="localData.action === 'edit'">
+  <app-page-subtitle [subtitle]="'Edit user access'"></app-page-subtitle>
+
+  <mat-form-field appearance="outline" class="col-md-12">
+    <mat-label>Change User Access Type</mat-label>
+    <mat-select [(value)]="localData.user_type">
+      <mat-option *ngFor="let userType of userPanelService.usersType" [value]="userType.user_type">
+        {{userType.user_type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-md-12" *ngIf="checkUserType()">
+    <mat-label>Change User Assigment Forest</mat-label>
+    <mat-select [(value)]="localData.forest_name">
+      <mat-option *ngFor="let forest of userProfileService.forestNameList" [value]="forest">{{forest}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions>
+  <!-- Delete button -->
+  <button mat-stroked-button (click)="doAction('delete')" color="accent" matTooltip="delete"
+    *ngIf="localData.action === 'delete'">
+    Delete
+  </button>
+
+  <!-- Edit button -->
+  <button mat-stroked-button (click)="doAction('edit')" color="primary" matTooltip="edit"
+    *ngIf="localData.action === 'edit'">
+    Edit
+  </button>
+
+  <!-- Close button -->
+  <button mat-stroked-button (click)="closeDialog()" color="primary" matTooltip="cancel" class="mx-auto d-block">
+    Cancel
+  </button>
+</div>

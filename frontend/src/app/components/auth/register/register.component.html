@@ -1,0 +1,64 @@
+<app-main-nav></app-main-nav>
+
+<div class="d-flex justify-content-center">
+  <app-alert></app-alert>
+</div>
+
+<div class="container">
+  <div class="login-wrapper small-margin-top" fxLayoutAlign="center start">
+    <mat-card class="transparent-bg">
+      <mat-card-title class="text-center">Register</mat-card-title>
+
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+        <!--  Name Field  -->
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" formControlName="name" id="name" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formControl.name.errors }"/>
+          <div *ngIf="submitted && formControl.name.errors" class="invalid-feedback">
+            <div *ngIf="formControl.name.errors.required">Name is required.</div>
+          </div>
+        </div>
+
+        <!--  Password Field  -->
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" formControlName="password" id="password" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formControl.password.errors }"/>
+          <div *ngIf="submitted && formControl.password.errors" class="invalid-feedback">
+            <div *ngIf="formControl.password.errors.required">Password is required.</div>
+          </div>
+        </div>
+
+        <!-- Confirm Password Field  -->
+        <div class="form-group">
+          <label for="password_confirmation">Confirm Password</label>
+          <input type="password" formControlName="password_confirmation" id="password_confirmation" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formControl.password_confirmation.errors }"/>
+          <div *ngIf="submitted && formControl.password_confirmation.errors" class="invalid-feedback">
+            <div *ngIf="formControl.password_confirmation.errors.required">Confirm password is required.</div>
+          </div>
+        </div>
+
+        <!--  Email Address Field  -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" formControlName="email" id="email" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && formControl.email.errors }"/>
+          <mat-error *ngIf="formControl.email.hasError('email') && !formControl.email.hasError('required')">
+            Please enter a valid email address.
+          </mat-error>
+          <div *ngIf="submitted && formControl.email.errors" class="invalid-feedback">
+            <div *ngIf="formControl.email.errors.required">Email is required.</div>
+          </div>
+        </div>
+
+        <!--  Register Button  -->
+        <div class="form-group text-center">
+          <button class="btn btn-primary">Register</button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+</div>

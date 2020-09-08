@@ -1,0 +1,33 @@
+<app-page-title [title]="title"></app-page-title>
+
+<div class="container mt-4 mb-5 ml-4">
+    <div mat-dialog-title class="text-info text-center mb-5">
+        <h6>If you made modifications, you must to press Submit button to save all these modifications in database.</h6>
+        <h6>If you modified or removed something by mistake, you can refresh the page by pressing F5
+            and everything will be like before.</h6>
+    </div>
+
+    <!-- Display alert -->
+    <div class="d-flex justify-content-center">
+        <app-alert></app-alert>
+    </div>
+
+    <!-- Edit Forest Name -->
+    <app-edit-forest-name></app-edit-forest-name>
+
+    <!-- Edit Forest Surface -->
+    <app-edit-forest-surface></app-edit-forest-surface>
+
+    <!-- Tree Types Table -->
+    <app-tree-types-table></app-tree-types-table>
+
+    <!-- Location Table -->
+    <app-location-table></app-location-table>
+
+    <div mat-dialog-actions class="mt-4">
+        <!-- Submit button -->
+        <button mat-stroked-button (click)="submitForest()" matTooltip="submit" class="btn btn-primary btn-block">
+            Submit
+        </button>
+    </div>
+</div>

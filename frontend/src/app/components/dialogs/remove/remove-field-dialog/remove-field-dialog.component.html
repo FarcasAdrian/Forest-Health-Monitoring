@@ -1,0 +1,11 @@
+<h1 mat-dialog-title class="text-center">Are you sure?</h1>
+
+<div mat-dialog-actions>
+  <!-- Delete button -->
+  <button mat-stroked-button color="accent" matTooltip="delete" (click)="onSubmit()">Delete</button>
+
+  <!-- Close button -->
+  <button mat-stroked-button (click)="closeDialog()" color="primary" matTooltip="cancel" class="mx-auto d-block">
+    Cancel
+  </button>
+</div>

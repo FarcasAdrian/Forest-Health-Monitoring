@@ -1,0 +1,11 @@
+.full-width-table {
+    width: 100%;
+}
+
+table {
+    table-layout: fixed;
+}
+
+.zoom-in {
+    cursor: zoom-in;
+}

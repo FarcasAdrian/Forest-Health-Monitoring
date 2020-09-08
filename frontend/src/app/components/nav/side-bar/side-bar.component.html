@@ -1,0 +1,65 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === true">
+
+    <mat-toolbar matLine>User Panel</mat-toolbar>
+
+    <mat-nav-list class="mt-5">
+
+      <h3 class="mat-subheader">User</h3>
+      <hr class="my-1">
+
+      <!-- User Tabs -->
+      <a mat-list-item *ngFor="let userTab of userPanelService.userTabs" matTooltip="{{userTab.toolTip}}"
+        (click)="userPanelService.onSelectTab(userTab.tabName)">
+        <mat-icon matListIcon>{{userTab.icon}}</mat-icon>
+        <h3 matLine>{{userTab.tabName}}</h3>
+      </a>
+
+      <!-- Forester Tabs  -->
+      <div *ngIf="hasForesterPrivilegies">
+        <h3 class="mat-subheader mt-5">Forester</h3>
+        <hr class="my-1">
+        <a mat-list-item *ngFor="let foresterTab of userPanelService.foresterTabs" matTooltip="{{foresterTab.toolTip}}"
+          (click)="userPanelService.onSelectTab(foresterTab.tabName)">
+          <mat-icon matListIcon>{{foresterTab.icon}}</mat-icon>
+          <h3 matLine>{{foresterTab.tabName}}</h3>
+        </a>
+      </div>
+
+      <!-- Administrator Tabs -->
+      <div *ngIf="hasAdminPrivilegies">
+        <h3 class="mat-subheader mt-5">Administrator</h3>
+        <hr class="my-1">
+
+        <a mat-list-item *ngFor="let administratorTab of userPanelService.administratorTabs"
+          matTooltip="{{administratorTab.toolTip}}" (click)="userPanelService.onSelectTab(administratorTab.tabName)">
+          <mat-icon matListIcon>{{administratorTab.icon}}</mat-icon>
+          <h3 matLine>{{administratorTab.tabName}}</h3>
+        </a>
+      </div>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar class="navbar-background-color">
+
+      <!--   Side Nav Button   -->
+      <button type="button" mat-icon-button matTooltip="Side Nav" class="text-white" (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+      <!--   Home Button   -->
+      <button mat-icon-button routerLink="" routerLinkActive="active" matTooltip="Home" class="text-white">
+        <i class="fas fa-home mb-1"></i>
+      </button>
+
+      <!--   Help to align User Button on right side   -->
+      <span class="fill-remaining-space"></span>
+
+      <!--   User Button   -->
+      <app-nav-content></app-nav-content>
+    </mat-toolbar>
+  </mat-sidenav-content>
+</mat-sidenav-container>

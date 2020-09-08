@@ -1,0 +1,19 @@
+<div *ngIf="data.action === 'delete'">
+  <h1 mat-dialog-title class="text-center">Are you sure?</h1>
+
+  <div mat-dialog-actions class="mt-4">
+    <!-- Delete button -->
+    <button mat-stroked-button (click)="doAction('delete')" color="accent" matTooltip="delete">
+      Delete
+    </button>
+  
+    <!-- Close button -->
+    <button mat-stroked-button (click)="closeDialog()" color="primary" matTooltip="cancel">
+      Cancel
+    </button>
+  </div>
+</div>
+
+<div *ngIf="data.action === 'edit'">
+  <app-forest></app-forest>
+</div>

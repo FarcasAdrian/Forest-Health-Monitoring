@@ -1,0 +1,73 @@
+<div *ngIf="!data.name">
+  <!-- success alert message -->
+  <div class="alert alert-success" role="alert" *ngIf="visible">{{message}}</div>
+
+  <!-- user-profile-dialog title for name, email and assigment forest -->
+  <p mat-dialog-title class="text-center font-weight-normal" *ngIf="!data.name">{{data.title}}</p>
+
+  <mat-dialog-content *ngIf="!data.name">
+    <!-- Dialog for user and email -->
+    <form [formGroup]="formGroup" *ngIf="data.formControlName === 'name' || data.formControlName === 'email'">
+      <mat-form-field appearance="outline" class="col-md-12">
+        <mat-label>{{data.labelName}}</mat-label>
+        <input matInput formControlName="{{data.formControlName}}" value="{{data.displayValue}}"
+          [ngClass]="{ 'is-invalid': submitted && formControlError }">
+        <div *ngIf="submitted && formControlError" class="invalid-feedback">
+          <div *ngIf="formControlError.required">{{data.errorMessage}}</div>
+        </div>
+      </mat-form-field>
+    </form>
+
+    <!--  Assigment forest field   -->
+    <div *ngIf="data.formControlName === 'forestAssigment'">
+      <p class="text-info">If you want to have access to a forest, you must to request one.</p>
+      <p class="text-info">You just need to choose one forest from the below list.</p>
+      <p class="text-info">After you send the request, a administrator will contact you to check if you are the real
+        forester.</p>
+      <p class="text-danger font-weight-bold">!!!Atention!!! You must to be the real forester for what forest you will
+        request the access. You will be verified!</p>
+      <mat-form-field appearance="outline" class="col-md-12 mt-3">
+        <mat-label>{{data.labelName}}</mat-label>
+        <mat-select [(value)]="data.displayValue">
+          <mat-option *ngFor="let forest of userProfileService.forestNameList" [value]="forest">{{forest}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-mini-fab mat-dialog-close matTooltip="Cancel"><i class="fas fa-times"></i></button>
+
+    <!-- Save button for name and email -->
+    <button mat-mini-fab matTooltip="Save" color="primary" class="ml-auto" (click)="onSubmit()"
+      *ngIf="data.formControlName !== 'forestAssigment'">
+      <i class="fas fa-save"></i>
+    </button>
+
+    <!-- Save button for assigment forest -->
+    <button mat-mini-fab matTooltip="Save" color="primary" class="ml-auto" (click)="requestAccess()"
+      *ngIf="data.formControlName === 'forestAssigment'">
+      <i class="fas fa-save"></i>
+    </button>
+  </mat-dialog-actions>
+</div>
+
+
+<!-- Dialog for upload image -->
+<div *ngIf="data.name">
+  <div mat-dialog-title class="text-danger">
+    <i class="fas fa-exclamation-triangle"></i>
+    {{data.title}}
+  </div>
+  <hr class="my-4">
+
+  <mat-dialog-content>
+    <p *ngIf="data.name" class="text-danger font-weight-bold">{{data.errorMessage}}</p>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-mini-fab mat-dialog-close matTooltip="Close" *ngIf="data.name" class="mx-auto d-block">
+      <i class="fas fa-times"></i>
+    </button>
+  </mat-dialog-actions>
+</div>

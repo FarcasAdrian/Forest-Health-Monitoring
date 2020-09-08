@@ -1,0 +1,42 @@
+<!-- Draw new line button -->
+<button mat-stroked-button color="accent" matTooltip="draw new line" style="float:right" class="mt-5"
+    (click)="openNewCoordinatesDialog(dataSource.forest.id)">
+    <mat-icon matListIcon>add</mat-icon>
+</button>
+
+<table mat-table [dataSource]="dataSource.forest.location.coordinates[0]"
+    class="mat-elevation-z8 full-width-table mt-4">
+
+    <!-- Latitude Column -->
+    <ng-container matColumnDef="latitude">
+        <th mat-header-cell *matHeaderCellDef>Latitude</th>
+        <td mat-cell *matCellDef="let element"> {{element[0]}} </td>
+    </ng-container>
+
+    <!-- Longitude Column -->
+    <ng-container matColumnDef="longitude">
+        <th mat-header-cell *matHeaderCellDef>Longitude</th>
+        <td mat-cell *matCellDef="let element"> {{element[1]}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element; index as coordIndex">
+
+            <!--   Edit button     -->
+            <button mat-icon-button color="primary" matTooltip="edit"
+                (click)="openEditCoordinatesDialog(element, coordIndex)">
+                <mat-icon matListIcon>edit</mat-icon>
+            </button>
+
+            <!--   Remove button     -->
+            <button mat-icon-button color="warn" matTooltip="remove" (click)="openRemoveFieldDialog(coordIndex)">
+                <mat-icon matListIcon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['latitude', 'longitude', 'action']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['latitude', 'longitude', 'action'];"></tr>
+</table>

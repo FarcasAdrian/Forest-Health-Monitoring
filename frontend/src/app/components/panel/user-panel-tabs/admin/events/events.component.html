@@ -1,0 +1,92 @@
+<app-page-title [title]="'Manage all issues'"></app-page-title>
+
+<div class="container mt-4 ml-3">
+    <div class="d-flex justify-content-center">
+        <app-alert></app-alert>
+    </div>
+
+    <!-- Create new issue button -->
+    <button mat-stroked-button color="accent" matTooltip="new issue" class="float-right" (click)="openNewIssueDialog()">
+        <mat-icon matListIcon>add</mat-icon>
+    </button>
+
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" class="full-width-table">
+
+            <!-- Forest Column -->
+            <ng-container matColumnDef="forest">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Forest Name</th>
+                <td mat-cell *matCellDef="let element"> {{element.forestName}} </td>
+            </ng-container>
+
+            <!-- Email Column -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Email</th>
+                <td mat-cell *matCellDef="let element"> {{element.userEmail}} </td>
+            </ng-container>
+
+            <!-- Forest Problem Type Column -->
+            <ng-container matColumnDef="problemType">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Problem Type</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.forestProblem}} </td>
+            </ng-container>
+
+            <!-- Description Column -->
+            <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Description</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    <button mat-icon-button matTooltip="description"
+                        (click)="dialogsService.openShowTextDialog(element.description)">
+                        <mat-icon matListIcon class="text-danger">local_library</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <!-- Photo Column -->
+            <ng-container matColumnDef="photo">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Photo</th>
+                <td mat-cell *matCellDef="let element">
+                    <div *ngIf="element.photo">
+                        <a class="zoom-in" (click)="dialogsService.openShowImageDialog(element.photo)">
+                            <img [src]="element.photo" alt="Photo not found." class="img-thumbnail">
+                        </a>
+                    </div>
+                </td>
+            </ng-container>
+
+            <!-- Validated Column -->
+            <ng-container matColumnDef="validated">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Validated</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    <p *ngIf="element.validated === 'Confirmed'" class="text-success">{{element.validated}}</p>
+                    <p *ngIf="element.validated === 'Declined'" class="text-danger">{{element.validated}}</p>
+                    <p *ngIf="element.validated === 'New'" class="text-info">{{element.validated}}</p>
+                </td>
+            </ng-container>
+
+            <!-- Action Column -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef class="text-center">Action</th>
+                <td mat-cell *matCellDef="let element" class="text-center">
+                    <!--   Confirm button     -->
+                    <button mat-icon-button matTooltip="confirm" *ngIf="element.validated === 'New'">
+                        <mat-icon matListIcon class="text-success"
+                            (click)="openConfirmActionDialog('Confirmed', element.id)">
+                            check</mat-icon>
+                    </button>
+
+                    <!--   Decline button     -->
+                    <button mat-icon-button matTooltip="decline" *ngIf="element.validated === 'New'"
+                        (click)="openConfirmActionDialog('Declined', element.id)">
+                        <mat-icon matListIcon class="text-danger">clear</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 15, 20, 25, 30]" showFirstLastButtons></mat-paginator>
+    </div>
+</div>

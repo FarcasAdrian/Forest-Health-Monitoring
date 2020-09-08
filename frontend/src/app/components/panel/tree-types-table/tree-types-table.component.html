@@ -1,0 +1,41 @@
+<!-- Create new tree type button -->
+<button mat-stroked-button color="accent" matTooltip="add new tree type" class="mt-4" style="float:right"
+    (click)="openNewTreeTypeDialog(dataSource.forest.id)">
+    <mat-icon matListIcon>add</mat-icon>
+</button>
+
+<table mat-table [dataSource]="dataSource.treeTypes" class="mat-elevation-z8 full-width-table">
+
+    <!-- Tree Type Column -->
+    <ng-container matColumnDef="treeType">
+        <th mat-header-cell *matHeaderCellDef>Tree Type</th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+
+            <!--   Edit Tree Type Button     -->
+            <button mat-icon-button color="primary" matTooltip="edit"
+                (click)="openEditFieldDialog(element.type, dataSource.forest.id, 'Edit Tree Type')">
+                <mat-icon matListIcon>edit</mat-icon>
+            </button>
+
+            <!--   Remove Tree Type Button     -->
+            <button mat-icon-button color="warn" matTooltip="remove"
+                (click)="openRemoveFieldDialog(element.type, dataSource.forest.id, 'treeType')">
+                <mat-icon matListIcon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['treeType', 'action']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['treeType', 'action'];"></tr>
+</table>
+
+<!-- Display if the table is empty -->
+<div *ngIf="dataSource.treeTypes.length === 0">
+    <app-mat-toolbar-message [message]="toolbarMessage"></app-mat-toolbar-message>
+</div>

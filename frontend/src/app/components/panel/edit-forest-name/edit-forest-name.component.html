@@ -1,0 +1,23 @@
+<form [formGroup]="forestNameForm">
+    <mat-form-field appearance="outline" class="col-md-5">
+
+        <mat-label>Edit Forest Name</mat-label>
+        <input matInput *ngIf="isEditForestNameInputDisabled" [value]="dataSource.forest.forest_name" disabled>
+
+        <input matInput formControlName="forestName" *ngIf="!isEditForestNameInputDisabled"
+            value="{{dataSource.forest.forest_name}}"
+            [ngClass]="{ 'is-invalid': submitted && forestNameControlErrors }">
+
+        <div *ngIf="submitted && forestNameControlErrors" class="invalid-feedback">
+            <div *ngIf="forestNameControlErrors.required">This field can't be empty.</div>
+        </div>
+    </mat-form-field>
+
+    <!-- Edit button -->
+    <button mat-stroked-button color="primary" matTooltip="edit" *ngIf="isEditForestNameInputDisabled"
+        (click)="isEditForestNameInputDisabled = false">Edit</button>
+
+    <!-- Save button -->
+    <button mat-stroked-button color="primary" matTooltip="edit" *ngIf="!isEditForestNameInputDisabled"
+        (click)="onSubmitForestName()">Save</button>
+</form>

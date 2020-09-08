@@ -1,0 +1,38 @@
+<!-- Generate Google Map -->
+<agm-map [latitude]="googleMapsService.center[0].latitude" [longitude]="googleMapsService.center[0].longitude"
+  [zoom]="googleMapsService.zoom" [mapTypeId]="'hybrid'" (mapReady)="onMapReady($event)" [streetViewControl]="false">
+
+  <!-- <div *ngIf="clicked === true">
+    <agm-marker latitude="{{lat}}" longitude="{{lng}}" label="{{label}}"
+      (markerClick)="show($event,location.id, location.name)">
+    </agm-marker>
+  </div> -->
+
+  <div *ngFor="let mapZone of mapZonesCoordinates">
+    <agm-polygon [paths]="mapZone" [fillColor]="'#FFBC00'" [strokeColor]="'transparent'" [fillOpacity]="0.5" (polyClick)="show($event)">
+    </agm-polygon>
+  </div>
+</agm-map>
+
+<!-- Display coordinates for the newest polygon drawn on map -->
+<div [hidden]="!displayNewLocationCoordinates" class="container-fluid mt-2">
+  <form *ngFor="let coordinate of newLocationCoordinates">
+    <div class="form-row">
+      <div class="col-md-3">
+        <input type="text" [value]="coordinate.latitude" class="form-control" disabled>
+      </div>
+      <div class="col-md-3">
+        <input type="text" [value]="coordinate.longitude" class="form-control" disabled>
+      </div>
+    </div>
+  </form>
+  <button *ngIf="newLocationCoordinates.length" type="submit" value="Submit" class="btn btn-outline-secondary mt-2"
+    (click)="savePolygonInDB()">Save Location
+  </button>
+</div>
+
+<!-- Display alert message after the Save Location button is clicked -->
+<div [hidden]="!displayAlertMessage" class="alert alert-success col-md-5 mt-2 alert-dismissible" role="alert">
+  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  <h5 class="text-center">Location Saved!</h5>
+</div>

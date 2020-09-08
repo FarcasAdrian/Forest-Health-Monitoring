@@ -1,0 +1,18 @@
+<div class="mb-5">
+    <mat-form-field>
+        <mat-label>From date</mat-label>
+        <input matInput [matDatepicker]="from_date" [value]="fromDate.value" [formControl]="fromDate" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="from_date"></mat-datepicker-toggle>
+        <mat-datepicker #from_date startView="year" [startAt]="startDate"></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="ml-5">
+        <mat-label>Until date</mat-label>
+        <input matInput [formControl]="untilDate" [value]="untilDate.value" [matDatepicker]="until_date"
+            [min]="minimDate" [max]="maxDate">
+        <mat-datepicker-toggle matSuffix [for]="until_date"></mat-datepicker-toggle>
+        <mat-datepicker #until_date startView="year" [startAt]="endDate"></mat-datepicker>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" class="ml-4" (click)="onSubmitFilter()">Filter</button>
+</div>

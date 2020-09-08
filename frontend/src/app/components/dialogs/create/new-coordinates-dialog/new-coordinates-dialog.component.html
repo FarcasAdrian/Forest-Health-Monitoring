@@ -1,0 +1,27 @@
+<app-page-subtitle [subtitle]="'Add new coordinates'"></app-page-subtitle>
+
+<form [formGroup]="fieldNameGroup">
+    <mat-form-field appearance="outline" class="col-md-12">
+        <mat-label>Latitude</mat-label>
+        <input matInput formControlName="latitudeField" required
+            [ngClass]="{ 'is-invalid': submitted && latitudeControlError }">
+        <div *ngIf="submitted && latitudeControlError" class="invalid-feedback">
+            <div *ngIf="latitudeControlError.required">This field can't be empty.</div>
+        </div>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="col-md-12">
+        <mat-label>Longitude</mat-label>
+        <input matInput formControlName="longitudeField" required
+            [ngClass]="{ 'is-invalid': submitted && longitudeControlError }">
+        <div *ngIf="submitted && longitudeControlError" class="invalid-feedback">
+            <div *ngIf="longitudeControlError.required">This field can't be empty.</div>
+        </div>
+    </mat-form-field>
+</form>
+
+<!-- Save button -->
+<button mat-stroked-button color="primary" matTooltip="submit" class="ml-3" (click)="onSubmit()">Save</button>
+
+<!-- Close button -->
+<button mat-stroked-button (click)="closeDialog()" color="primary" matTooltip="cancel" class="ml-4">Cancel</button>

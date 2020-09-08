@@ -1,0 +1,19 @@
+FROM alexcicioc/php:7.4-cli-composer-mysql
+
+RUN apt install -y libzip-dev libpng-dev
+
+RUN docker-php-ext-install zip gd
+
+WORKDIR /app
+
+COPY ./composer.* ./
+
+RUN composer install --prefer-dist --no-scripts --no-dev --no-autoloader
+
+RUN composer update --prefer-dist --no-scripts --no-dev --no-autoloader
+
+COPY . .
+
+RUN composer dump-autoload --no-scripts --no-dev --optimize
+
+CMD ["php", "/app/migrate.php"]

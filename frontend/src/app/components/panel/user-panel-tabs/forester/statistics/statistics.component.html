@@ -1,0 +1,24 @@
+<app-page-title [title]="'Statistics for own forest'"></app-page-title>
+
+<hr>
+
+<div class="text-center">
+    <app-page-subtitle [subtitle]="'Filter charts statistics.'"></app-page-subtitle>
+    <app-date-picker></app-date-picker>
+</div>
+
+<hr>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <app-page-subtitle [subtitle]="'Forest statistics for reported problems.'"></app-page-subtitle>
+            <app-forest-issues-statistics></app-forest-issues-statistics>
+        </div>
+
+        <div class="col-md-6">
+            <app-page-subtitle [subtitle]="'Forest statistics for types of problems.'"></app-page-subtitle>
+            <app-forest-problem-type-statistics></app-forest-problem-type-statistics>
+        </div>
+    </div>
+</div>

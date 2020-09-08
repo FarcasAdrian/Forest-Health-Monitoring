@@ -1,0 +1,16 @@
+<app-page-subtitle [subtitle]="'Edit tree type'"></app-page-subtitle>
+
+<mat-form-field class="col-md-12">
+    <mat-label>select a different tree type</mat-label>
+    <mat-select [formControl]="treeTypes" required>
+        <mat-option *ngFor="let treeType of treeTypeList" [value]="treeType.type">{{treeType.type}}</mat-option>
+    </mat-select>
+
+    <mat-error *ngIf="treeTypes.hasError('required')">Please choose a tree type.</mat-error>
+</mat-form-field>
+
+<!-- Edit button -->
+<button mat-stroked-button color="primary" matTooltip="submit" class="ml-3" (click)="onSubmit()">Submit</button>
+
+<!-- Close button -->
+<button mat-stroked-button (click)="closeDialog()" color="primary" matTooltip="cancel" class="ml-4">Cancel</button>
